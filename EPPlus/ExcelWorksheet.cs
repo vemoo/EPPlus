@@ -3326,7 +3326,11 @@ namespace OfficeOpenXml
 
                 //Rewrite the pivottable address again if any rows or columns have been inserted or deleted
                 pt.SetXmlNodeString("d:location/@ref", pt.Address.Address);
-                var r = pt.CacheDefinition.SourceRange;
+
+                // only handle Worksheet sources
+                var r = pt.CacheDefinition.CacheSource == eSourceType.Worksheet
+                    ? pt.CacheDefinition.SourceRange
+                    : null;
                 if (r != null)  //Source does not exist
                 {
                     ExcelTable t = null;

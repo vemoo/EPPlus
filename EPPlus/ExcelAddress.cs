@@ -1330,7 +1330,13 @@ namespace OfficeOpenXml
                 return _address;
             }
             set
-            {                
+            {
+                if (this.Address.EndsWith("[]"))
+                {
+                    // is table
+                    return;
+                }
+
                 SetAddress(value);
                 ChangeAddress();
             }

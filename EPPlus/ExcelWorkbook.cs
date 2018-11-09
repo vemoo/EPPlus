@@ -1028,10 +1028,15 @@ namespace OfficeOpenXml
 					elem.InnerText = name.NameFormula;
 				}
 			}
+			else if (name.Address.EndsWith("[]"))
+			{
+			    // is table
+			    elem.InnerText = name.FullAddress;
+			}
 			else
 			{
-                elem.InnerText = name.FullAddressAbsolute;
-			}
+			    elem.InnerText = name.FullAddressAbsolute;
+			}            
 		}
 		/// <summary>
 		/// Is their any names in the workbook or in the sheets.
